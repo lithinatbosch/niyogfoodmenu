@@ -1,0 +1,83 @@
+# Kids Menu Planner - Git Ignore File
+
+# Database Configuration
+config/database.php
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+error_log
+access_log
+
+# Backup files
+*.sql
+*.sql.gz
+*.bak
+*.backup
+*~
+
+# Cache and temporary files
+cache/
+tmp/
+temp/
+*.tmp
+*.cache
+
+# Uploaded files (if uploads feature is added)
+uploads/
+files/
+
+# Node modules (if build tools are added)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Composer (if dependencies are added)
+vendor/
+composer.lock
+
+# Build artifacts
+dist/
+build/
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Nginx/Apache logs
+*.access.log
+*.error.log
+
+# Session files
+sessions/
+*.sess
+
+# Lock files
+*.lock
+
+# Database dumps
+dump.sql
+*.dump
+
+# Generated icons (keep originals only)
+# Uncomment if you want to track only source icons
+# assets/icons/*.png
