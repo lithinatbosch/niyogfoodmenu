@@ -7,8 +7,8 @@
 // Database credentials
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'kids_menu_planner');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'lithin');
+define('DB_PASS', 'HimaLithin123');
 define('DB_CHARSET', 'utf8mb4');
 
 // Database connection class
