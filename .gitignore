@@ -1,7 +1,7 @@
 # Kids Menu Planner - Git Ignore File
 
 # Database Configuration
-config/database.php
+
 
 # Environment files
 .env
@@ -23,7 +23,6 @@ error_log
 access_log
 
 # Backup files
-*.sql
 *.sql.gz
 *.bak
 *.backup
