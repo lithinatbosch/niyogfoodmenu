@@ -3,7 +3,7 @@
  * Common Header Include
  * Kids Menu Planner Application
  */
-require_once __DIR__ . '/config/session.php';
+require_once __DIR__ . '/../config/session.php';
 $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 $csrfToken = generateCSRFToken();
 ?>
