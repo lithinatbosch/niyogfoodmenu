@@ -1,7 +1,14 @@
 # Kids Menu Planner - Git Ignore File
 
 # Database Configuration
+config/database.php
+config/session.php
 
+# Server Configuration
+.htaccess
+
+# Test and Debug files
+test-db.php
 
 # Environment files
 .env
