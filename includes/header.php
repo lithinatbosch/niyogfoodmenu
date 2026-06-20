@@ -17,7 +17,7 @@ $csrfToken = generateCSRFToken();
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Menu Planner">
-    <title><?php echo isset($pageTitle) ? escapeHTML($pageTitle) . ' - ' : ''; ?>Kids Menu Planner</title>
+    <title><?php echo isset($pageTitle) ? escapeHTML($pageTitle) . ' - ' : ''; ?>Niyog's Menu Planner</title>
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -34,7 +34,7 @@ $csrfToken = generateCSRFToken();
         <!-- Navigation Bar -->
         <nav class="navbar">
             <div class="nav-content">
-                <h1 class="app-title">🍽️ Kids Menu</h1>
+                <h1 class="app-title">🍽️ Niyog's Menu</h1>
             </div>
         </nav>
         

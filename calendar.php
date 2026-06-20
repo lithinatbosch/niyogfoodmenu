@@ -53,10 +53,6 @@ if (!isset($_GET['week'])) {
     }
 }
 
-// Calculate previous and next week dates
-$prevWeek = date('Y-m-d', strtotime($weekStartDate . ' -7 days'));
-$nextWeek = date('Y-m-d', strtotime($weekStartDate . ' +7 days'));
-
 // Fetch meal plans for the selected week
 $mealPlansStmt = $db->prepare("
     SELECT 
@@ -111,18 +107,10 @@ include __DIR__ . '/includes/header.php';
 </div>
 <?php endif; ?>
 
-<!-- Week Navigation -->
-<div class="week-navigation">
-    <a href="?week=<?php echo $prevWeek; ?>" class="week-nav-btn">
-        <span>◀</span>
-    </a>
-    <div class="week-display">
-        <span class="week-label">Week of</span>
-        <span class="week-date"><?php echo date('M d, Y', strtotime($weekStartDate)); ?></span>
-    </div>
-    <a href="?week=<?php echo $nextWeek; ?>" class="week-nav-btn">
-        <span>▶</span>
-    </a>
+<!-- Week Display -->
+<div class="week-display-info">
+    <span class="week-label">Week of</span>
+    <span class="week-date"><?php echo date('M d, Y', strtotime($weekStartDate)); ?></span>
 </div>
 
 <!-- Calendar Grid -->
