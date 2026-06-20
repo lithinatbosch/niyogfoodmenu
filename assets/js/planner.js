@@ -17,22 +17,28 @@ async function handlePlannerSubmit(e) {
     const weekStartDate = formData.get('week_start_date');
     const csrfToken = formData.get('csrf_token');
     
+    console.log('Form submission started');
+    console.log('Week start date:', weekStartDate);
+    
     // Build meals array
     const meals = [];
     const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
     const mealTypes = ['breakfast', 'morning_snack', 'lunch', 'evening_snack'];
+    const missingMeals = [];
     
     days.forEach(day => {
         const dayCapitalized = day.charAt(0).toUpperCase() + day.slice(1);
         
         mealTypes.forEach(mealType => {
             const foodItemId = formData.get(`${day}[${mealType}]`);
-            if (foodItemId) {
+            if (foodItemId && foodItemId !== '') {
                 meals.push({
                     day_of_week: dayCapitalized,
                     meal_type: mealType,
                     food_item_id: parseInt(foodItemId)
                 });
+            } else {
+                missingMeals.push(`${dayCapitalized} - ${mealType.replace('_', ' ')}`);
             }
         });
     });
@@ -40,7 +46,10 @@ async function handlePlannerSubmit(e) {
     // Validate that all meals are selected
     const expectedMeals = days.length * mealTypes.length;
     if (meals.length !== expectedMeals) {
-        showToast('Please select all meals for the week', 'error');
+        console.log('Expected meals:', expectedMeals);
+        console.log('Actual meals:', meals.length);
+        console.log('Missing meals:', missingMeals);
+        showToast(`Please select all meals. Missing: ${missingMeals.length} meals`, 'error');
         return;
     }
     

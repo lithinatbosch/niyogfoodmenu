@@ -29,10 +29,10 @@
         // Pass CSRF token to JavaScript
         window.csrfToken = '<?php echo $csrfToken; ?>';
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=<?php echo time(); ?>"></script>
     <?php if (isset($additionalJS)): ?>
         <?php foreach ($additionalJS as $js): ?>
-            <script src="<?php echo escapeHTML($js); ?>"></script>
+            <script src="<?php echo escapeHTML($js); ?>?v=<?php echo time(); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 </body>

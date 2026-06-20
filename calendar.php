@@ -12,18 +12,45 @@ $additionalJS = ['assets/js/calendar.js'];
 
 $db = getDB();
 
+// Get current day number (1 = Monday, 7 = Sunday)
+$dayNumber = date('N');
+$isWeekend = ($dayNumber == 6 || $dayNumber == 7); // Saturday or Sunday
+
 // Get current week's start date (Monday)
 $currentDate = new DateTime();
-if ($currentDate->format('N') == 7) { // If Sunday
-    $currentDate->modify('last monday');
-} elseif ($currentDate->format('N') != 1) {
-    $currentDate->modify('this week monday');
-}
-$weekStartDate = $currentDate->format('Y-m-d');
 
-// Allow navigation to different weeks
-if (isset($_GET['week'])) {
+// If no week parameter is provided and it's weekend, show next week
+if (!isset($_GET['week'])) {
+    if ($isWeekend) {
+        $currentDate->modify('next monday');
+    } else {
+        // Regular weekday logic
+        if ($currentDate->format('N') == 7) { // If Sunday
+            $currentDate->modify('last monday');
+        } elseif ($currentDate->format('N') != 1) {
+            $currentDate->modify('this week monday');
+        }
+    }
+    $weekStartDate = $currentDate->format('Y-m-d');
+} else {
+    // Week parameter provided - validate and use it
     $weekStartDate = sanitizeInput($_GET['week']);
+    // Validate the date format
+    $dateCheck = DateTime::createFromFormat('Y-m-d', $weekStartDate);
+    if (!$dateCheck || $dateCheck->format('Y-m-d') !== $weekStartDate) {
+        // Invalid date format, use current week
+        $currentDate = new DateTime();
+        if ($isWeekend) {
+            $currentDate->modify('next monday');
+        } else {
+            if ($currentDate->format('N') == 7) {
+                $currentDate->modify('last monday');
+            } elseif ($currentDate->format('N') != 1) {
+                $currentDate->modify('this week monday');
+            }
+        }
+        $weekStartDate = $currentDate->format('Y-m-d');
+    }
 }
 
 // Calculate previous and next week dates
@@ -72,7 +99,17 @@ include __DIR__ . '/includes/header.php';
 
 <div class="page-header">
     <h2 class="page-title">Calendar View</h2>
+    <?php if ($isWeekend && !isset($_GET['week'])): ?>
+        <p class="page-subtitle">Next Week (weekends are not scheduled)</p>
+    <?php endif; ?>
 </div>
+
+<?php if ($isWeekend && !isset($_GET['week'])): ?>
+<div class="info-banner">
+    <span class="info-icon">ℹ️</span>
+    <span>Showing next week's menu (weekends are not scheduled)</span>
+</div>
+<?php endif; ?>
 
 <!-- Week Navigation -->
 <div class="week-navigation">
@@ -155,7 +192,7 @@ include __DIR__ . '/includes/header.php';
     <div class="empty-icon">📅</div>
     <h3 class="empty-title">No Menu for This Week</h3>
     <p class="empty-text">Plan your meals for this week</p>
-    <a href="planner.php?week=<?php echo $weekStartDate; ?>" class="btn btn-primary">Plan This Week</a>
+    <a href="planner.php" class="btn btn-primary">Go to Planner</a>
 </div>
 <?php endif; ?>
 

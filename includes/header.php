@@ -27,7 +27,7 @@ $csrfToken = generateCSRFToken();
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
     <div class="app-container">
