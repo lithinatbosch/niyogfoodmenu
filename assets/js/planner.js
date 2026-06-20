@@ -19,7 +19,7 @@ async function handlePlannerSubmit(e) {
     
     // Build meals array
     const meals = [];
-    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
     const mealTypes = ['breakfast', 'morning_snack', 'lunch', 'evening_snack'];
     
     days.forEach(day => {

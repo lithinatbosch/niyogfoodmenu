@@ -81,8 +81,9 @@ function handleGet($db) {
         JOIN food_items fi ON mp.food_item_id = fi.id
         JOIN food_categories fc ON fi.category_id = fc.id
         WHERE mp.week_start_date = :week_start_date
+        AND mp.day_of_week IN ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
         ORDER BY 
-            FIELD(mp.day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'),
+            FIELD(mp.day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'),
             FIELD(mp.meal_type, 'breakfast', 'morning_snack', 'lunch', 'evening_snack')
     ");
     
@@ -243,7 +244,7 @@ function suggestMenu($db, $data) {
         sendJSON(['error' => 'Not enough food items in all categories to generate suggestions'], 400);
     }
     
-    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     $suggestedMeals = [];
     
     // Generate random meal plan for each day

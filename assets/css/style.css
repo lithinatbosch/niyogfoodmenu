@@ -309,6 +309,32 @@ body {
 }
 
 /* ==========================================================================
+   Info Banner
+   ========================================================================== */
+.info-banner {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-left: 4px solid #2196f3;
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.info-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.info-banner span:not(.info-icon) {
+    color: #1565c0;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
    Search Container
    ========================================================================== */
 .search-container {

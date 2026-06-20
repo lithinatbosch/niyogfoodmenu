@@ -12,12 +12,23 @@ $additionalJS = ['assets/js/planner.js'];
 
 $db = getDB();
 
+// Get current day number (1 = Monday, 7 = Sunday)
+$dayNumber = date('N');
+$isWeekend = ($dayNumber == 6 || $dayNumber == 7); // Saturday or Sunday
+
 // Get current week's start date (Monday)
 $currentDate = new DateTime();
-if ($currentDate->format('N') == 7) { // If Sunday
-    $currentDate->modify('last monday');
-} elseif ($currentDate->format('N') != 1) {
-    $currentDate->modify('this week monday');
+
+// If it's weekend, plan for next week
+if ($isWeekend) {
+    $currentDate->modify('next monday');
+} else {
+    // Regular weekday logic
+    if ($currentDate->format('N') == 7) { // If Sunday
+        $currentDate->modify('last monday');
+    } elseif ($currentDate->format('N') != 1) {
+        $currentDate->modify('this week monday');
+    }
 }
 $weekStartDate = $currentDate->format('Y-m-d');
 
@@ -59,8 +70,15 @@ include __DIR__ . '/includes/header.php';
 
 <div class="page-header">
     <h2 class="page-title">Weekly Planner</h2>
-    <p class="page-subtitle">Week of <?php echo date('M d, Y', strtotime($weekStartDate)); ?></p>
+    <p class="page-subtitle"><?php echo $isWeekend ? 'Next Week: ' : 'Week of '; ?><?php echo date('M d, Y', strtotime($weekStartDate)); ?></p>
 </div>
+
+<?php if ($isWeekend): ?>
+<div class="info-banner">
+    <span class="info-icon">ℹ️</span>
+    <span>Planning for next week (weekends are not scheduled)</span>
+</div>
+<?php endif; ?>
 
 <!-- Action Buttons -->
 <div class="planner-actions">
