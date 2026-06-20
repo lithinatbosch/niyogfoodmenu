@@ -37,7 +37,7 @@ foreach ($allFoods as $food) {
 }
 
 // Days of the week
-$daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+$daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
 // Fetch existing meal plans for current week
 $mealPlansStmt = $db->prepare("
