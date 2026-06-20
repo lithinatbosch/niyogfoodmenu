@@ -79,9 +79,9 @@ include __DIR__ . '/includes/header.php';
     <div class="empty-state">
         <div class="empty-icon">🌴</div>
         <h3 class="empty-title">It's the Weekend!</h3>
-        <p class="empty-text">No menu planned for weekends. Plan your meals for next week.</p>
+        <p class="empty-text">No menu planned for weekends. <br> Plan your meals for next week.</p>
         <a href="planner.php" class="btn btn-primary btn-large">
-            <span>📋</span> Plan Next Week (Starting <?php echo date('M d', strtotime($nextWeekStartDate)); ?>)
+            <span>📋</span> Plan Next Week
         </a>
     </div>
 <?php elseif (array_filter($todayMenu)): ?>

@@ -95,15 +95,13 @@ include __DIR__ . '/includes/header.php';
 
 <div class="page-header">
     <h2 class="page-title">Calendar View</h2>
-    <?php if ($isWeekend && !isset($_GET['week'])): ?>
-        <p class="page-subtitle">Next Week (weekends are not scheduled)</p>
-    <?php endif; ?>
+  
 </div>
 
 <?php if ($isWeekend && !isset($_GET['week'])): ?>
 <div class="info-banner">
     <span class="info-icon">ℹ️</span>
-    <span>Showing next week's menu (weekends are not scheduled)</span>
+    <span>Showing next week's menu</span>
 </div>
 <?php endif; ?>
 
