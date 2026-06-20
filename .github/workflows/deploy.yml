@@ -1,0 +1,39 @@
+name: Deploy Website to Oracle Cloud
+
+on:
+  push:
+    branches:
+      - main  # Change this to 'master' if your default branch uses that name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to OCI VM via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # 1. Navigate to your website's directory on the VM
+            cd /var/www/html || exit 1
+            
+            # 2. Pull the latest changes from GitHub
+            git pull origin main
+            
+            # 3. Perform any build steps if necessary (uncomment if you use Node/Python/etc.)
+            # npm install
+            # npm run build
+            
+            # 4. Restart/Reload your web server to reflect changes
+            # For Nginx:
+            sudo systemctl reload nginx
+            
+            # For Apache:
+            # sudo systemctl reload apache2

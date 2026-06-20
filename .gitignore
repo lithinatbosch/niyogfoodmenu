@@ -4,6 +4,9 @@
 config/database.php
 config/session.php
 
+# Keys and Credentials
+KEY/
+
 # Server Configuration
 .htaccess
 
@@ -87,3 +90,4 @@ dump.sql
 # Generated icons (keep originals only)
 # Uncomment if you want to track only source icons
 # assets/icons/*.png
+
