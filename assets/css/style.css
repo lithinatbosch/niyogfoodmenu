@@ -629,7 +629,7 @@ body {
     margin: 0;
     border-top: 1px solid var(--border-color);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 50;
+    z-index: 90;
     display: flex;
     justify-content: center;
 }
@@ -848,6 +848,22 @@ body {
 /* ==========================================================================
    Responsive Design
    ========================================================================== */
+@media (max-width: 767px) {
+    .sticky-actions {
+        bottom: calc(70px + env(safe-area-inset-bottom));
+        padding: 0.875rem 1rem calc(0.875rem + env(safe-area-inset-bottom)) 1rem;
+    }
+    
+    .sticky-actions button {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .planner-form {
+        padding-bottom: calc(140px + env(safe-area-inset-bottom));
+    }
+}
+
 @media (min-width: 768px) {
     .menu-cards {
         grid-template-columns: repeat(2, 1fr);
