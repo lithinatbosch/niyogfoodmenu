@@ -76,7 +76,7 @@ include __DIR__ . '/includes/header.php';
 <?php if ($isWeekend): ?>
 <div class="info-banner">
     <span class="info-icon">ℹ️</span>
-    <span>Planning for next week (weekends are not scheduled)</span>
+    <span>Planning for next week</span>
 </div>
 <?php endif; ?>
 
